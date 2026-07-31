@@ -322,7 +322,7 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
 
             <div className="control-group">
               <label className="control-label">Search Location</label>
-              <form onSubmit={handleSearch} style={{ display: 'flex', gap: '6px' }}>
+              <form onSubmit={handleSearch} className="search-form">
                 <input
                   type="text"
                   className="control-input"
@@ -330,19 +330,7 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                 />
-                <button
-                  type="submit"
-                  disabled={searching}
-                  style={{
-                    background: '#4a9eff',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '6px',
-                    padding: '0 12px',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                  }}
-                >
+                <button type="submit" disabled={searching} className="search-submit">
                   {searching ? '...' : 'Go'}
                 </button>
               </form>
@@ -399,17 +387,7 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
 
             <button
               onClick={() => window.__focusIndia && window.__focusIndia()}
-              style={{
-                width: '100%',
-                background: 'rgba(255, 153, 51, 0.15)',
-                color: '#ffb366',
-                border: '1px solid rgba(255, 153, 51, 0.3)',
-                borderRadius: '6px',
-                padding: '8px',
-                fontSize: '12px',
-                cursor: 'pointer',
-                marginBottom: '16px',
-              }}
+              className="focus-btn"
             >
               Focus India
             </button>
@@ -418,7 +396,7 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
 
             <div className="control-group">
               <label className="control-label">🎬 Time-Lapse</label>
-              <div style={{ display: 'flex', gap: '6px', marginBottom: '6px' }}>
+              <div className="timelapse-controls">
                 <input
                   type="date"
                   className="control-input"
@@ -437,35 +415,11 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
                 />
               </div>
               {!isPlaying ? (
-                <button
-                  onClick={startTimelapse}
-                  style={{
-                    width: '100%',
-                    background: 'rgba(74, 158, 255, 0.15)',
-                    color: '#4a9eff',
-                    border: '1px solid rgba(74, 158, 255, 0.3)',
-                    borderRadius: '6px',
-                    padding: '8px',
-                    fontSize: '12px',
-                    cursor: 'pointer',
-                  }}
-                >
+                <button onClick={startTimelapse} className="timelapse-action">
                   ▶ Play Time-Lapse
                 </button>
               ) : (
-                <button
-                  onClick={stopTimelapse}
-                  style={{
-                    width: '100%',
-                    background: 'rgba(255, 77, 77, 0.15)',
-                    color: '#ff8080',
-                    border: '1px solid rgba(255, 77, 77, 0.3)',
-                    borderRadius: '6px',
-                    padding: '8px',
-                    fontSize: '12px',
-                    cursor: 'pointer',
-                  }}
-                >
+                <button onClick={stopTimelapse} className="timelapse-action stop">
                   ⏹ Stop ({frameIndex + 1}/{framesRef.current.length})
                 </button>
               )}

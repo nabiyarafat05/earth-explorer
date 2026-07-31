@@ -160,6 +160,52 @@ body {
   outline: none;
 }
 
+.search-form {
+  display: flex;
+  gap: 6px;
+}
+
+.timelapse-controls {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.search-submit,
+.focus-btn,
+.timelapse-action {
+  width: 100%;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.search-submit {
+  background: #4a9eff;
+  color: white;
+  border: none;
+}
+
+.focus-btn {
+  background: rgba(255, 153, 51, 0.15);
+  color: #ffb366;
+  border: 1px solid rgba(255, 153, 51, 0.3);
+  margin-bottom: 16px;
+}
+
+.timelapse-action {
+  background: rgba(74, 158, 255, 0.15);
+  color: #4a9eff;
+  border: 1px solid rgba(74, 158, 255, 0.3);
+}
+
+.timelapse-action.stop {
+  background: rgba(255, 77, 77, 0.15);
+  color: #ff8080;
+  border: 1px solid rgba(255, 77, 77, 0.3);
+}
+
 .control-input:focus,
 .control-select:focus {
   border-color: #4a9eff;
@@ -510,10 +556,11 @@ body {
   background: rgba(255, 255, 255, 0.9);
   color: #4a5568;
 }
-/* ---------- MOBILE RESPONSIVE ---------- */
 @media (max-width: 768px) {
   .navbar {
     padding: 12px 16px;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .navbar-logo {
@@ -522,6 +569,7 @@ body {
 
   .navbar-links {
     gap: 14px;
+    flex-wrap: wrap;
   }
 
   .navbar-links a {
@@ -540,21 +588,50 @@ body {
     font-size: 14px;
   }
 
+  .hero-button {
+    width: 100%;
+    max-width: 220px;
+  }
+
   .map-section {
     padding: 10px;
-    height: 85vh;
+    height: auto;
+    min-height: 0;
+  }
+
+  .map-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
   }
 
   .sidebar {
-    width: calc(100% - 20px);
-    max-width: 260px;
-    max-height: 70%;
-    font-size: 13px;
+    position: static;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    border-radius: 12px 12px 0 0;
     padding: 14px;
   }
 
-  .app-title {
-    font-size: 15px;
+  .search-form,
+  .timelapse-controls {
+    flex-direction: column;
+  }
+
+  .search-submit {
+    min-height: 40px;
+  }
+
+  .leaflet-container {
+    height: 52vh;
+    min-height: 320px;
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
   }
 
   .about,
@@ -570,5 +647,66 @@ body {
   .feature-grid,
   .mission-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .navbar-links {
+    gap: 10px 12px;
+  }
+
+  .navbar-links a {
+    font-size: 11px;
+  }
+
+  .hero {
+    padding: 42px 12px 34px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .hero p {
+    font-size: 13px;
+  }
+
+  .hero-button {
+    max-width: 100%;
+  }
+
+  .map-section {
+    padding: 8px;
+  }
+
+  .sidebar {
+    padding: 12px;
+  }
+
+  .control-input,
+  .control-select,
+  .search-submit,
+  .focus-btn,
+  .timelapse-action {
+    min-height: 38px;
+    font-size: 12px;
+  }
+
+  .leaflet-container {
+    height: 46vh;
+    min-height: 280px;
+  }
+
+  .app-title {
+    font-size: 15px;
+  }
+
+  .about h2,
+  .missions h2 {
+    font-size: 20px;
   }
 }
