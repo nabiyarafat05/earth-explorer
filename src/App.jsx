@@ -172,7 +172,6 @@ function QuakePopup({ quake }) {
     </div>
   )
 }
-
 function App() {
   const [date, setDate] = useState('2024-01-01')
   const [loading, setLoading] = useState(false)
@@ -316,7 +315,7 @@ function App() {
         <h1>Explore Earth from Space</h1>
         <p>
           Live NASA satellite imagery, real-time earthquake data, and AI-powered
-          disaster insights — all in one interactive map.
+          disaster insights, all in one interactive map.
         </p>
         <button className="hero-button" onClick={scrollToMap}>
           Launch Map ↓
@@ -524,7 +523,6 @@ function App() {
               </div>
             )}
           </div>
-
           {tilesLoading && (
             <div className="map-spinner">
               <span className="spinner-ring" />
@@ -625,9 +623,42 @@ function App() {
               <h3>Chandrayaan-3</h3>
               <p>
                 India's third lunar mission, which successfully landed near the Moon's
-                south pole in 2023 — a global first for that region.
+                south pole in 2023, the first mission ever to do so.
               </p>
             </div>
+            <div className="mission-card">
+              <span className="mission-agency isro">ISRO</span>
+              <h3>Aditya-L1</h3>
+              <p>
+                India's first dedicated solar observatory, studying the Sun from a
+                stable orbit point between Earth and the Sun.
+              </p>
             </div>
+            <div className="mission-card">
+              <span className="mission-agency nasa">NASA</span>
+              <h3>Terra &amp; Aqua (MODIS)</h3>
+              <p>
+                The satellites providing the true-color and temperature imagery shown
+                on this map, in orbit since the early 2000s.
+              </p>
+            </div>
+            <div className="mission-card">
+              <span className="mission-agency nasa">NASA</span>
+              <h3>Landsat Program</h3>
+              <p>
+                The longest-running Earth observation program, providing continuous
+                satellite imagery of Earth's surface since 1972.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            
+      <footer className="site-footer">
+        Built with NASA GIBS and USGS open data. Earth Explorer Project 2026.
+      </footer>
+    </div>
+  )
+}
+
+export default App
