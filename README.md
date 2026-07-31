@@ -1,16 +1,48 @@
-# React + Vite
+# 🌍 Earth Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Explore Earth from space — live NASA satellite imagery combined with real-time earthquake data, all in one interactive map.
 
-Currently, two official plugins are available:
+**Live site:** [earth-explorer-red.vercel.app](https://earth-explorer-red.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What it does
 
-## React Compiler
+- **Live satellite imagery** — View NASA's True Color and Land Surface Temperature imagery for any date, powered by NASA GIBS.
+- **Date-specific earthquakes** — See real earthquakes that occurred on your selected date, sourced from the USGS Earthquake API, color-coded by magnitude.
+- **AI-powered insights** — Click any earthquake marker to get a simple, AI-generated explanation and safety tips.
+- **Time-lapse mode** — Pick a date range and watch satellite imagery play through day by day.
+- **Location search** — Jump to any city or place on the map instantly.
+- **Light/dark mode** — Toggle between themes.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> **Note:** Black diagonal streaks in the satellite imagery are a natural feature of single-satellite daily passes (MODIS Terra), not a bug — they represent gaps between orbital swaths that weren't imaged that day.
 
-## Expanding the Oxlint configuration
+## Tech stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- **React + Vite** — frontend framework and build tool
+- **Leaflet / react-leaflet** — interactive 2D map rendering
+- **NASA GIBS** — satellite imagery tiles
+- **USGS Earthquake API** — real-time and historical earthquake data
+- **Nominatim (OpenStreetMap)** — location search/geocoding
+- **Gemini API** — AI-generated earthquake explanations
+
+## Running locally
+
+```bash
+git clone https://github.com/nabiyarafat05/earth-explorer.git
+cd earth-explorer
+npm install
+npm run dev
+```
+
+You'll need a Gemini API key set as an environment variable to use the AI explanation feature.
+
+## Built for
+
+Built for BSERC, using real NASA and USGS open data sources.
+
+## Space missions referenced
+
+- **Chandrayaan-3** (ISRO) — India's third lunar mission, landed near the Moon's south pole in 2023.
+- **Aditya-L1** (ISRO) — India's first dedicated solar observatory.
+- **Terra & Aqua (MODIS)** (NASA) — satellites providing the true-color and temperature imagery shown on this map.
+- **Landsat Program** (NASA) — the longest-running Earth observation program, providing continuous imagery since 1972.
+-

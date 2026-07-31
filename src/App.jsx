@@ -186,7 +186,7 @@ function App() {
 
   const layer = LAYERS[layerKey]
   const tileUrl = `https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/${layer.id}/default/${date}/${layer.resolution}/{z}/{y}/{x}.${layer.format}`
-
+const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=${layer.id}&FORMAT=image/jpeg&CRS=EPSG:4326&BBOX=-90,-180,90,180&WIDTH=2048&HEIGHT=1024&TIME=${date}`
   useEffect(() => {
     setQuakesLoading(true)
 
