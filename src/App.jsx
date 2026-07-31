@@ -172,7 +172,6 @@ function App() {
   const [quakesLoading, setQuakesLoading] = useState(false)
   const [showQuakes, setShowQuakes] = useState(true)
   const [tilesLoading, setTilesLoading] = useState(false)
-  const [theme, setTheme] = useState('dark')
   const [searchText, setSearchText] = useState('')
   const [searching, setSearching] = useState(false)
   const [searchError, setSearchError] = useState('')
@@ -211,10 +210,6 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
 
   const scrollToMap = () => {
     document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const toggleTheme = () => {
-    setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
   }
 
   const handleSearch = async (e) => {
@@ -293,13 +288,12 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
     : '—'
 
   return (
-    <div className={theme === 'light' ? 'light-mode' : ''}>
+    <div>
       <header className="navbar">
         <div className="navbar-logo">🌍 Earth Explorer</div>
         <nav className="navbar-links">
           <a onClick={scrollToMap}>Map</a>
           <a href="#about-section">About</a>
-          <a onClick={toggleTheme}>{theme === 'dark' ? '☀️ Light' : '🌙 Dark'}</a>
         </nav>
       </header>
 
@@ -601,7 +595,26 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
       </section>
 
       <footer className="site-footer">
-        Built with NASA GIBS and USGS open data. Earth Explorer Project 2026.
+        <div className="site-footer__content">
+          <div className="site-footer__brand">2026 Earth Explorer</div>
+          <div className="site-footer__meta">Designed &amp; Developed by Nabiya Rafat</div>
+          <div className="site-footer__meta">Powered by NASA USGS Gemini AI</div>
+        </div>
+
+        <a
+          className="site-footer__linkedin"
+          href="https://www.linkedin.com/in/nabiya-rafat-216445379?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Visit Nabiya Rafat on LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M6.94 8.5A1.56 1.56 0 1 0 6.94 5.38a1.56 1.56 0 0 0 0 3.12ZM5.5 9.75h2.88V18H5.5V9.75Zm4.68 0h2.76v1.13h.04c.38-.73 1.32-1.5 2.72-1.5 2.91 0 3.44 1.91 3.44 4.4V18h-2.88v-16.89c0-.98-.02-2.25-1.37-2.25-1.37 0-1.58 1.07-1.58 2.17V18h-2.88V9.75Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
       </footer>
     </div>
   )
