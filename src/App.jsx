@@ -105,22 +105,14 @@ function ClickCoordinates() {
 }
 
 async function explainQuake(mag, place) {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY
-  const prompt = `A magnitude ${mag} earthquake occurred near ${place}. In simple, calm language: 1) briefly explain what this means, 2) give 2-3 basic safety precautions for people in that area. Keep it under 80 words total.`
-
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-      }),
-    }
-  )
+  const res = await fetch('/api/explain', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mag, place }),
+  })
 
   const data = await res.json()
-  return data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Could not generate explanation.'
+  return data?.text || 'Could not generate explanation.'
 }
 
 function QuakePopup({ quake }) {
