@@ -510,3 +510,65 @@ body {
   background: rgba(255, 255, 255, 0.9);
   color: #4a5568;
 }
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .navbar-logo {
+    font-size: 15px;
+  }
+
+  .navbar-links {
+    gap: 14px;
+  }
+
+  .navbar-links a {
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 50px 16px 40px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .map-section {
+    padding: 10px;
+    height: 85vh;
+  }
+
+  .sidebar {
+    width: calc(100% - 20px);
+    max-width: 260px;
+    max-height: 70%;
+    font-size: 13px;
+    padding: 14px;
+  }
+
+  .app-title {
+    font-size: 15px;
+  }
+
+  .about,
+  .missions {
+    padding: 50px 16px;
+  }
+
+  .about h2,
+  .missions h2 {
+    font-size: 22px;
+  }
+
+  .feature-grid,
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+}
