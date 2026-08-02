@@ -19,7 +19,11 @@ export default async function handler(req, res) {
         }),
       }
     )
-    const data = await geminiRes.json()
+    if (!geminiRes.ok) {
+  const error = await geminiRes.text();
+  console.log(error);
+  return res.status(500).json({ error });
+}
 console.log('Gemini response:', JSON.stringify(data))
 const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Could not generate explanation.'
 res.status(200).json({ text })

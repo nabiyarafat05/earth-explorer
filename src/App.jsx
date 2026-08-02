@@ -6,20 +6,27 @@ import './App.css'
 const INDIA_CENTER = [22.5937, 78.9629]
 const INDIA_ZOOM = 5
 
-const LAYERS = {
-  trueColor: {
-    label: 'True Color',
-    id: 'MODIS_Terra_CorrectedReflectance_TrueColor',
-    resolution: '250m',
+
+  const LAYERS = {
+  blueMarble: {
+    label: 'Blue Marble',
+    id: 'BlueMarble_ShadedRelief_Bathymetry',
     format: 'jpg',
   },
-  temperature: {
-    label: 'Land Surface Temperature',
-    id: 'MODIS_Terra_Land_Surface_Temp_Day',
-    resolution: '1km',
+
+  viirs: {
+    label: 'True Color (Daily)',
+    id: 'VIIRS_SNPP_CorrectedReflectance_TrueColor',
+    format: 'jpg',
+  },
+
+  nightLights: {
+    label: 'Night Lights',
+    id: 'VIIRS_SNPP_DayNightBand_ENCC',
     format: 'png',
   },
 }
+
 
 function getQuakeColor(mag) {
   if (mag >= 6) return '#ff4d4d'
@@ -167,7 +174,7 @@ function QuakePopup({ quake }) {
 function App() {
   const [date, setDate] = useState('2024-01-01')
   const [loading, setLoading] = useState(false)
-  const [layerKey, setLayerKey] = useState('trueColor')
+  const [layerKey, setLayerKey] = useState('blueMarble')
   const [quakes, setQuakes] = useState([])
   const [quakesLoading, setQuakesLoading] = useState(false)
   const [showQuakes, setShowQuakes] = useState(true)
@@ -184,7 +191,10 @@ function App() {
   const intervalRef = useRef(null)
 
   const layer = LAYERS[layerKey]
-  const tileUrl = `https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/${layer.id}/default/${date}/${layer.resolution}/{z}/{y}/{x}.${layer.format}`
+  const tileUrl =
+  layerKey === "blueMarble"
+    ? "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+    : `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${layer.id}/default/${date}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.${layer.format}`;
 const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=${layer.id}&FORMAT=image/jpeg&CRS=EPSG:4326&BBOX=-90,-180,90,180&WIDTH=2048&HEIGHT=1024&TIME=${date}`
   useEffect(() => {
     setQuakesLoading(true)
@@ -490,18 +500,20 @@ const globeImageUrl = `https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi
                 dashArray: '6 6',
               }}
             />
+          
             <TileLayer
-              key={date + layerKey}
-              url={tileUrl}
-              attribution="NASA GIBS"
-              eventHandlers={{
-                loading: () => setTilesLoading(true),
-                load: () => {
-                  setLoading(false)
-                  setTilesLoading(false)
-                },
-              }}
-            />
+  key={date + layerKey}
+  url={tileUrl}
+  noWrap={true}
+  attribution="© Esri, NASA GIBS"
+  eventHandlers={{
+    loading: () => setTilesLoading(true),
+    load: () => {
+      setLoading(false)
+      setTilesLoading(false)
+    },
+  }}
+/>  
 
             {showQuakes &&
               quakes.map((quake) => {
